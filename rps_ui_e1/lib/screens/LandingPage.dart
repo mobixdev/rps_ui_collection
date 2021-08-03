@@ -49,7 +49,7 @@ class LandingPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                addVerticalSpace(20),
+                addVerticalSpace(10),
                 Padding(
                   padding: sidePadding,
                   child: Text(
@@ -76,8 +76,12 @@ class LandingPage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(),
                   child: Row(
-                    children: ["<\$220,000","For Sale","3-4 Beds",">1000 sqft"]
-                        .map((filter) => ChoiceOption(text: filter)).toList(),
+                    children: [
+                      "<\$220,000",
+                      "For Sale",
+                      "3-4 Beds",
+                      ">1000 sqft"
+                    ].map((filter) => ChoiceOption(text: filter)).toList(),
                   ),
                 ),
                 addVerticalSpace(10),
@@ -159,7 +163,9 @@ class RealEstateItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ClipRRect(borderRadius: BorderRadius.circular(25.0), child: Image.asset(itemData["image"])),
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(25.0),
+                    child: Image.asset(itemData["image"])),
                 Positioned(
                     top: 15,
                     right: 15,
