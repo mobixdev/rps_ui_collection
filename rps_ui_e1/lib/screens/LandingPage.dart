@@ -6,6 +6,7 @@ import 'package:rps_ui_e1/screens/DetailPage.dart';
 import 'package:rps_ui_e1/utils/constants.dart';
 import 'package:rps_ui_e1/utils/custom_functions.dart';
 import 'package:rps_ui_e1/utils/widget_functions.dart';
+import 'package:rps_ui_e1/widget/navigation_drawer_widget.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -16,104 +17,119 @@ class LandingPage extends StatelessWidget {
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     return SafeArea(
       child: Scaffold(
+          drawer: NavigationDrawerWidget(),
           body: Container(
-        width: size.width,
-        height: size.height,
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            width: size.width,
+            height: size.height,
+            child: Stack(
               children: [
-                addVerticalSpace(padding),
-                Padding(
-                  padding: sidePadding,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BorderIcon(
-                        height: 50,
-                        width: 50,
-                        child: Icon(
-                          Icons.menu,
-                          color: COLOR_BLACK,
-                        ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    addVerticalSpace(padding),
+                    Padding(
+                      padding: sidePadding,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Ink(
+                            decoration: const ShapeDecoration(
+                                color: Colors.lightBlue, shape: CircleBorder()),
+                            child: IconButton(
+                              onPressed: () {
+                                Scaffold.of(context).drawer;
+                              },
+                              icon: Icon(
+                                Icons.menu,
+                                color: Colors.white,
+                              ),
+                              iconSize: 20.0,
+                            ),
+                          ),
+                          BorderIcon(
+                            height: 50,
+                            width: 50,
+                            child: Icon(
+                              Icons.menu,
+                              color: COLOR_BLACK,
+                            ),
+                          ),
+                          BorderIcon(
+                            height: 50,
+                            width: 50,
+                            child: Icon(
+                              Icons.settings,
+                              color: COLOR_BLACK,
+                            ),
+                          ),
+                        ],
                       ),
-                      BorderIcon(
-                        height: 50,
-                        width: 50,
-                        child: Icon(
-                          Icons.settings,
-                          color: COLOR_BLACK,
-                        ),
+                    ),
+                    addVerticalSpace(10),
+                    Padding(
+                      padding: sidePadding,
+                      child: Text(
+                        "City",
+                        style: themeData.textTheme.bodyText2,
                       ),
-                    ],
-                  ),
+                    ),
+                    addVerticalSpace(10),
+                    Padding(
+                      padding: sidePadding,
+                      child: Text(
+                        "San Francisco",
+                        style: themeData.textTheme.headline1,
+                      ),
+                    ),
+                    Padding(
+                        padding: sidePadding,
+                        child: Divider(
+                          height: 25,
+                          color: COLOR_GREY,
+                        )),
+                    addVerticalSpace(10),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      child: Row(
+                        children: [
+                          "<\$220,000",
+                          "For Sale",
+                          "3-4 Beds",
+                          ">1000 sqft"
+                        ].map((filter) => ChoiceOption(text: filter)).toList(),
+                      ),
+                    ),
+                    addVerticalSpace(10),
+                    Expanded(
+                      child: Padding(
+                        padding: sidePadding,
+                        child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: RE_DATA.length,
+                            itemBuilder: (context, index) {
+                              return RealEstateItem(
+                                itemData: RE_DATA[index],
+                              );
+                            }),
+                      ),
+                    ),
+                  ],
                 ),
-                addVerticalSpace(10),
-                Padding(
-                  padding: sidePadding,
-                  child: Text(
-                    "City",
-                    style: themeData.textTheme.bodyText2,
+                Positioned(
+                  bottom: 20,
+                  width: size.width,
+                  child: Center(
+                    child: OptionButton(
+                      text: "Map View",
+                      icon: Icons.map_rounded,
+                      width: size.width * 0.35,
+                    ),
                   ),
-                ),
-                addVerticalSpace(10),
-                Padding(
-                  padding: sidePadding,
-                  child: Text(
-                    "San Francisco",
-                    style: themeData.textTheme.headline1,
-                  ),
-                ),
-                Padding(
-                    padding: sidePadding,
-                    child: Divider(
-                      height: 25,
-                      color: COLOR_GREY,
-                    )),
-                addVerticalSpace(10),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                  child: Row(
-                    children: [
-                      "<\$220,000",
-                      "For Sale",
-                      "3-4 Beds",
-                      ">1000 sqft"
-                    ].map((filter) => ChoiceOption(text: filter)).toList(),
-                  ),
-                ),
-                addVerticalSpace(10),
-                Expanded(
-                  child: Padding(
-                    padding: sidePadding,
-                    child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: RE_DATA.length,
-                        itemBuilder: (context, index) {
-                          return RealEstateItem(
-                            itemData: RE_DATA[index],
-                          );
-                        }),
-                  ),
-                ),
+                )
               ],
             ),
-            Positioned(
-              bottom: 20,
-              width: size.width,
-              child: Center(
-                child: OptionButton(
-                  text: "Map View",
-                  icon: Icons.map_rounded,
-                  width: size.width * 0.35,
-                ),
-              ),
-            )
-          ],
-        ),
-      )),
+          )),
     );
   }
 }
