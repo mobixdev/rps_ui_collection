@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rps_ui_e1/utils/constants.dart';
 
 class BorderIcon extends StatelessWidget {
-  final Widget child;
-  final EdgeInsets padding;
-  final double width, height;
+  final Widget? child;
+  final EdgeInsets? padding;
+  final double? width, height;
 
   const BorderIcon(
-      {Key key,
-      @required this.child,
-      this.padding,
-      this.width,
-      this.height})
+      {Key? key, @required this.child, this.padding, this.width, this.height})
       : super(key: key);
 
   @override

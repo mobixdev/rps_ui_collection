@@ -134,9 +134,8 @@ class LandingPage extends StatelessWidget {
 }
 
 class ChoiceOption extends StatelessWidget {
-  final String text;
-
-  const ChoiceOption({Key key, this.text}) : super(key: key);
+  final String? text;
+  const ChoiceOption({Key? key, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -148,10 +147,9 @@ class ChoiceOption extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
       margin: const EdgeInsets.only(left: 20),
-      child: Text(
-        text,
-        style: themeData.textTheme.headline5,
-      ),
+      //child: Text(text,
+      //style: themeData.textTheme.headline5,
+      //),
     );
   }
 }
@@ -159,7 +157,7 @@ class ChoiceOption extends StatelessWidget {
 class RealEstateItem extends StatelessWidget {
   final dynamic itemData;
 
-  const RealEstateItem({Key key, this.itemData}) : super(key: key);
+  const RealEstateItem({Key? key, this.itemData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
